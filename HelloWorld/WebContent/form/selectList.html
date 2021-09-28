@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form/selectList.html</title>
+</head>
+<body>
+    <center>
+        <h3>그룹별 선택 항목을 제공합니다.</h3>
+        <form>
+            <label>전공 분야를 선택하세요.</label>
+                <select name="major">
+                    <optgroup label="computer">
+                        <option>Software</option>
+                        <option>Robot</option>
+                        <option>System</option>
+                    </optgroup>
+                    <optgroup label="language">
+                        <option selected>Korea</option>
+                        <option>English</option>
+                        <option>China</option>
+                        <option>Germany</option>
+                    </optgroup>
+                    <optgroup Label="business">
+                        <option>Service</option>
+                        <option>Education</option>
+                        <option>Communication</option>
+                        <option>Marketing</option>
+                    </optgroup>
+                </select>
+                <p></p>
+                <input type="submit" value="선택">
+                <input type="reset" value="다시선택">
+        </form>
+        <h3>선택사항을 직접 입력하세요.</h3>
+        <form>
+            <label>전공 분야를 입력하세요.</label>
+                <input type="text" list="majorlist" name="major">
+                <datalist id="majorlist">
+                    <option value="Software">소프트웨어</option>
+                    <option value="Robot">로봇</option>
+                    <option value="System">시스템</option>
+                    <option value="Service">서비스</option>
+                    <option value="Education">교육</option>
+                </datalist>
+                <p></p>
+                <input type="submit" value="완료">
+                <input type="reset" value="다시작성">
+        </form>
+    </center>
+</body>
+</html>

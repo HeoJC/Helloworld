@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>CSS Template</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+    background-image: url(../img/paris.PNG);
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 30%;
+  height: 300px; /* only for demonstration, should be removed */
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 70%;
+  background-color: #ffffff;
+  height: 300px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: #000000;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h2>파리</h2>
+</header>
+
+<section>
+  <nav>
+    <ul>
+       <li><a href="../form/london.html">런던</a></li>
+       <li><a href="../form/paris.html">파리</a></li>
+       <li><a href="../form/tokyo.html">도쿄</a></li>
+    </ul>
+  </nav>
+  
+  <article>
+    <table>
+        <tr>
+            <td><img src="../img/france.PNG" width="150px" height="100px"></td>
+            <td><h1>파리</h1></td> 
+        </tr>
+        <tr>
+            <td><button type="button" onclick="window.open('https://www.youtube.com/watch?v=znlQ30FyQc0')">프랑스국가</button></td>
+        </tr>
+    </table>
+    <p>파리(프랑스어: Paris)는 프랑스의 수도로, 프랑스 북부 일드프랑스 지방의 중앙에 있다. </p>
+    <p>센 강 중류에 있으며, 면적은 105 km2. 인구는 2010년 기준으로 224만 명이다. 파리의 행정 구역은 1~20구로 나뉘어 있다.</p>
+  </article>
+</section>
+
+<footer>
+  <p>Footer</p>
+</footer>
+
+</body>
+</html>
+
