@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/boxmodel.html</title>
+    <style>
+        div {
+            border: 2px dotted red;
+        }
+        div.inner {
+            padding: 20px;
+            margin: 10px;
+            border-radius: 50px;
+            border-style: solid;
+        }
+        div.outer {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- head에 style에 padding 넣을때 padding: 20px 20px ; 이렇게 두번 넣으면 첫번재는 상하, 두번째는 좌우를 뜻함 , 
+        세번 넣으면 상, 좌우, 하 를 뜻함, 네번 넣으면 상 , 우 , 하 , 좌 (시계방향) 를 뜻함-->
+    <div class="outer">
+        <div class="inner"><center>Centent</center></div>
+    </div>
+</body>
+</html>

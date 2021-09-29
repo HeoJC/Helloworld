@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/combinator.html</title>
+    <style>
+        div.parent p {
+            background-color: yellow;
+        }
+        div.child~p {
+            color: red;
+        }
+        div.child+p {
+            font-size: x-large;
+        }
+        div.parent>p:first-child {
+            color: pink;
+        }
+    </style>
+</head>
+<body>
+    <!-- child + 하면 child 의 인접한 형제 선택자 -->
+    <!-- child + 하면 child 의 다음 형제 선택자 -->
+        
+    <!-- div.parent > div 자손-->
+    <!-- div.child > div 자손-->
+    <!-- div.parent div 후손-->
+    <!-- div.parent p (이러면 자손포함 후손p 니까 두개의 p모두 포함)-->
+    <!-- div.parent > p (이러면 자손p 니까 더 밑에 있는 자손p만 포함)-->
+    <div class="parent">
+        <p>brother1</p>
+        <div class="child">
+            <div class="grandchildren">
+                <p>grandson</p>
+            </div>
+        </div>
+        <div>sister</div>
+        <p>brother2</p>
+        <p>brother3</p>
+    </div>
+
+    <!-- 선택할 때 부모를 기준으로 선택해야 함 -> 부모parent기준 첫번째 자손 or 후손 자손의 인접한 자손 등등-->
+
+</body>
+</html>

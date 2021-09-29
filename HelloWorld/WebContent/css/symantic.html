@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/symantic.html</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        div.outline {
+            border: 2px dotted black;
+            width: 500px;
+            height: 800px;
+            text-align: center;
+            margin: auto;
+        }
+        header , nav , section , aside , footer {
+            border: 1px solid grey;
+            margin: 10px 10px 20px 10px;
+            padding: 10px;
+        }
+        header {
+            background-color: wheat;
+            width: 480px;
+            height: 80px;
+        }
+        nav , section , aside {
+            float: left;
+        }
+        nav {
+            background-color: greenyellow;
+            width: 80px;
+            height: 550px;
+            line-height: 450px;
+        }
+        section {
+            background-color: greenyellow;
+            width: 270px;
+            height: 550px;
+        }
+        header.in , article , footer.in {
+            border: 1px solid grey;
+            margin: 5px auto;
+            padding: 5px;
+            width: 220px ;
+            background-color: yellowgreen;
+        }
+        header.in {
+            height: 40px;
+        }
+        article {
+            height: 350px;
+            line-height: 270px;
+        }
+        footer.in {
+            height: 40px;
+        }
+        aside {
+            float: right;
+            background-color: greenyellow;
+            width: 80px;
+            height: 550px;
+            line-height: 450px;
+        }
+        footer {
+            clear: both;
+            background-color: wheat;
+            width: 480px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outline">
+        <header>
+            <p>header</p>
+        </header>
+        <nav>
+            <p>nav</p>
+        </nav>
+        <section>
+            <p>section</p>
+            <header class="in">header</header>
+            <article>article</article>
+            <footer class="in">footer</footer>
+        </section>
+        <aside>
+            <p>aside</p>
+        </aside>
+        <footer>
+            <p>footer</p>
+        </footer>
+    </div>
+    
+</body>
+</html>
