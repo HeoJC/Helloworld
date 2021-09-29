@@ -6,13 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>css/pseudo1.html</title>
     <style>
-        h4:first-child {
+        h4:nth-of-type(2n) {
             background-color: green;
+        }
+        h4:last-child() {
+            background-color: pink;
+        }
+        P:only-of-type {
+            background-color: skyblue;
+        }
+        p:empty {
+            color: blue;
+            border: 1px dotted red;
+        }
+        p:root {
+            background-color: yellow;
+        }
+        input:checked+p {
+            background-color: yellow;
         }
     </style>
 </head>
 <body>
-    <h4>웹프로그래밍</h4>
+    <h3>웹프로그래밍</h3>
     <h4>웹프로그래밍</h4>
     <h4>웹프로그래밍</h4>
     <h4>웹프로그래밍</h4>
@@ -23,5 +39,13 @@
     <h4>웹프로그래밍</h4>
     <h4>웹프로그래밍</h4>
 
+    <div>
+        <p>웹프로그래밍</p>
+    </div>
+    <p></p>
+    <p>웹프로그래밍3</p>
+
+    <input type="checkbox" name="" id="">
+    체크박스
 </body>
 </html>
