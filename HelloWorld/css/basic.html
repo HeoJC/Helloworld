@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/basic.html</title>
+    <style>
+        * {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        p {
+            color: yellowgreen;
+        }
+        h3 {
+            color: purple;
+        }
+
+        .second {
+            border: 1px solid blue;
+        }
+
+        #second {
+            border: 2px dotted red;
+        }
+    </style>
+</head>
+<body> <!-- 페이지 전체 p태그에 스타일을 주고싶으면 위에 head에 P{} 해서 스타일을 주면됨 , h3도 마찬가지 (책 205쪽 선택자 - 타입 선택자) (*은 전체 선택자) -->
+    <h3 style="color : lightyellow ; background-color: darkgrey;">CSS 기본설정</h3>
+    <p style="font-size: 40px; ">기본 내용</p>
+    <p>기본 내용2</p>
+    <h3 class="second">font size 기본 50입니다</h3> <!-- class 속성은 head에서 . 으로 시작 -->
+    <h1 class="second">h1 기본태그내용</h1>
+    <h1 id="second">아이디 속성태그</h1> <!-- id 속성은 head에서 # 으로 시작 -->
+    
+</body>
+</html>
