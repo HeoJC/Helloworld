@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/basic.html</title>
+</head>
+<body>
+    <script>                                          // java script 는 오타 나도 안 알려줌
+        var v1 = "Hello, World" ;
+        v1 = 10 ;
+        v1 = true ;
+        console.log(typeof v1) ;
+
+        
+        v2 = 30 ;                                     // 타입없이 변수 선언 하면 global 변수가 됨
+        console.log("v2 : " + v2) ;
+
+        v3 = 20 ;
+        function f1() {
+            var v3 = 40 ;                             // local variable
+            console.log("v3 : " + v3) ;   
+            v3 = 50 ;                                 // 위에 var v3 = 40 ; 을 지우고 타입 지정 없이 v3 = 50 ; 만 남겨두면 global 변수로 선언되어서 local 안이나 밖이나 50으로 출력됨
+            v4 = 90 ;
+        }
+        f1() ;                                        // function은 실행시켜야 출력했을 때 나옴
+
+        var v3 = 25 ;                                 // java에서는 한번 선언한 변수 다시 선언하면 오류 나오지만 java script에서는 가능
+        console.log("v3 outer : " + v3) ;             // local varivable 이라서 local 벗어나서 출력하면 local안에 v3가 아니라 밖의 v3가 출력됨
+        console.log("v4 outer : " + v4) ;
+
+        let num1 = 10 ;
+
+        let num2 = 20 ;                               // let은 같은 이름으로 변수 선언 할 수 없음. 그래서 오류를 방지할 수 있어서 사용
+        num2 = "hello" ;
+        console.log("num1 : " + num2) ;
+
+        const num3 = 40 ;                             // 상수 - 상수는 한번 선언하면 변경할 수 없음
+        // num3 = "hello" ;
+        console.log("num3 : " + num3) ;
+
+        const obj1 = {
+            name: "Hong" ,
+            age : 20
+        }
+        obj1.name = "Hwang" ;
+        console.log(typeof obj1) ;
+        console.log(obj1.name) ;
+        console.log(obj1.age) ;
+
+        // obj1 = {                                   // 상수라서 변경 불가능
+        //     name : "Hwang" ,
+        //     age : 25
+        // }
+
+        let num4 = null;                              // Null 값도 object 타입
+        console.log(typeof num4) ;
+
+        let num5 = [] ;                               // 배열기호만 쓰면 배열 선언
+        console.log(typeof num5) ;                    // 배열 도 object 타입
+        num5[0] = 10 ;
+        num5[1] = "Hello" ;                           // java script 에서는 한 배열안에 다른 타입의 데이터를 넣을 수 있음
+        num5[2] = true ;                              // java script 에서는 한 배열안에 다른 타입의 데이터를 넣을 수 있음
+
+        for (let i = 0 ; i < num5.length ; i++) {     // java script 에서는 int 타입이 없으니까 let i = 0 ; ... 
+            console.log(num5[i]) ;
+        }
+
+        document.write("<h1>Hello, World</h1>") ;     // 브라우저에서 f12 누르면 나오는 콘솔창 말고 페이지 화면에 출력 (HTML 태그도 사용가능)
+        const hong = {                                // 이것도 object 타입
+            firstName : "kildong" ,
+            lastName : "Hong" ,
+            age : 20 ,
+            hobby : "독서"                            // 한글로 해도 됨
+        }
+        document.write("<p>이름 : " + hong.firstName + hong.lastName + "</p>") ;
+        document.write("<p>나이 : " + hong.age + "</p>") ;
+        document.write("<p>취미 : " + hong.hobby + "</p>") ;
+
+        document.write("<ul>");
+            document.write("<li>" + hong.firstName + hong.lastName + "</li>") ;
+            document.write("<li>" + hong.age + "</li>") ;
+            document.write("<li>" + hong.hobby + "</li>") ;
+        document.write("</ul>");
+
+        
+    </script>
+</body>
+</html>
