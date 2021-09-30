@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice_home</title>
+</head>
+<body>
+    <script>
+        const choi = {
+            name : "최선영" ,
+            age : 20 ,
+            score : 90
+        }
+
+        const han = {
+            name : "한동일" ,
+            age : 21 ,
+            score : 89
+        }
+
+        const yun = {
+            name : "윤희성" ,
+            age : 22 ,
+            score : 88
+        }
+        const persons = [choi , han , yun] ;
+
+        // for in는 객체 순환 , for of는 배열 순환
+        for (let person in persons) { 
+            console.log(person)
+        }
+        // 그래서 이렇게 돌리면 0,1,2 이렇게 출력되는데 배열이라는 객체를 순환하면서 값을 가져옴 그래서 인덱스가 출력된다.
+        for (let person in choi) {
+            console.log(person + " / " + choi[person]) ;
+        }
+        // 그래서 for in 은 주로 객체에 쓰임. choi라는 객체에서 person에 필드명을 가지고오고 choi[person]으로 필드명에 해당하는 필드값을 가지고옴
+
+        for (let person of persons) { 
+            console.log(person)
+        }
+        // for of 는 배열을 순환하면서 배열에서 원하는 값을 가지고오는거
+        // 이렇게 돌리면 name : 최선영 , age : 20 , score : 90 ... 이렇게 출력되는데 배열을 순환하면서 값을 가져온다.
+        
+        for(let person of persons) {
+            for (let field in person) {
+                console.log(person[field]) ;
+            }
+        }
+        // 그래서 이렇게 for of 랑 for in 이랑 같이 돌리면 for of로 persons라는 배열을 순환하면서 안에 데이터를 가지고와서 person에 넣고
+        // for in 으로 person이라는 객체를 순환하면서 필드명을 따와서 field 에 넣고
+        // person[field]로 해당 필드명에 해당하는 필드데이터를 출력함.
+        
+
+    </script>
+</body>
+</html>
