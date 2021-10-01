@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/event.html</title>
+</head>
+<body>
+    <button onclick="clickFunc()">Click</button>      <!-- 속성을 onclick 말고 onmouseover 하면 마우스 올렸을때 실행됨 -->
+    <p>here</p>
+    <button onclick="clickFunc2()">Click2</button>
+    <script>
+        // 태그 -> element
+        function clickFunc() {
+            // window.alert("클릭되었습니다") ;
+            let h1 = document.createElement("h1") ;
+            h1.innerHTML = "안녕하세요" ;
+            let buttons = document.getElementsByTagName("button") ; // 지정해놓은 id 없으면 tagname으로도 할 수 있음 . id는 페이지에서 중복되게 생기지 않기 때문에 id지정해주는게 가장 좋은 방법
+            buttons[0].after(h1)                      // buttons 배열안에 여러 button이 있는데 몇번째 버튼 뒤에 h1을 나오게할지 buttun[i]로 지정해줌
+                                                      // 뒤에말고 앞에 하고싶으면 before
+            buttons[0].innerHTML = "클릭" ;           // 0번째 버튼의 이름을 "클릭" 으로 바꿈 , 위에 getElementsByTagName을 button말고 p로 바꾸면 클릭했을 때 p 이름이 바뀜
+            buttons[1].style.backgroundColor = "pink" ;
+        }
+
+        function clickFunc2() {
+            let p = document.getElementsByTagName("p") ;
+            p[0].innerHTML = "여기" ;
+        }
+    </script>
+</body>
+</html>

@@ -38,23 +38,28 @@ let tag = "<table border='1'>" ;
 tag += "<thead><tr><th>이름</th><th>나이</th><th>점수</th><th>합격여부</th></tr></thead>" ;
 tag += "<tbody>" ;
 for(let person of persons) {
-    if(person.score >= 60) {
-        tag += "<tr class='pass'>" ;
-    } else {
-        tag += "<tr class='fail'>" ;
-    }
-    for (let field in person) { // field 갯수.
-        tag += "<td>" + person[field] + "</td>" ;
-    }
-    if(person.score >= 60) {
-        tag += "<td class='pass'>Pass</td>" ;
-    } else {
-        tag += "<td class='fail'>Fail</td>" ;
-    }
-    tag += "</tr>" ;
+    // index2에 createTr function을 만들어놓고 호출하기 위해 주석처리함
+    // if(person.score >= 60) {
+    //     tag += "<tr class='pass'>" ;
+    // } else {
+    //     tag += "<tr class='fail'>" ;
+    // }
+    // for (let field in person) { // field 갯수.
+    //     tag += "<td>" + person[field] + "</td>" ;
+    // }
+    // if(person.score >= 60) {
+    //     tag += "<td class='pass'>Pass</td>" ;
+    // } else {
+    //     tag += "<td class='fail'>Fail</td>" ;
+    // }
+    // tag += "</tr>" ;
+    tag += createTr(person) 
 }
 tag = tag + "</tbody></table>" ;
 document.write(tag) ;
 }
 
 createTable() ;
+
+// java script는 정의를 먼저하고 실행하는거뿐만 아니라 실행 먼저하고 뒤에 정의해도 정상적으로 실행된다
+// 이런걸 hoisting(끌어올림) 이라고 함

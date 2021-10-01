@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/string.html</title>
+    
+</head>
+<body>
+    <script>
+        let fruits = "apple , banana , cherry" ;
+        console.log("문자열 길이 : " + fruits.length) ;
+        console.log(`문자열 길이 : ${fruits.length}`) ;    // ``(1왼쪽)로 하면 변수값도 ${}안에 넣어서 같이 쓸 수 있음 , 엔터(줄바꿈) 도 인식함 , 원래는 \n 으로 해야됨
+        let sliceValue = fruits.slice(2 , 7) ;        // 앞에 2개 자르고 3번째부터 (처음으로부터)7번째까지 출력
+        console.log(`slice(2 , 7) : ${sliceValue}`) ; 
+
+        // slice(a , b) 앞에 a개 자르고 a+1 부터 (처음으로부터) b까지 출력
+        // slice(-a , -b) 위에랑 같은데 뒤에서부터
+        // slice(a) 앞에서부터 a개 자르고 출력
+        // slice(-a_) 위에랑 같은데 뒤에서부터
+
+        // substring(a , b) 앞에 a개 자르고 a+1 부터 (a+1으로부터) b개까지 출력
+
+
+    </script>
+    <div id="gender"></div>
+    <script src="string.js"></script> 
+    <!-- script를 head영역에 두면 html파일의 body를 읽기전에 스크립트파일부터 읽어서 스크립트파일에 function안에 -->
+    <!-- div id = gender를 찾지 못해서 에러가 난다. 그럴때는 script를 head에 두지말고 body마지막에 둬서  -->
+    <!-- body의 div id = gender 를 먼저 읽고 스크립트 파일이 실행되게 하거나 -->
+    <!-- script를 head에 두고싶으면 <script src="string.js" defer></script> 로 defer를 추가해서 HTML파일 먼저-->
+    <!-- 읽고 스크립트파일을 실행하도록 해준다. -->
+</body>
+</html>

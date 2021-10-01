@@ -6,15 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>javascript/index.html</title> 
     <link rel="stylesheet" href="index.css">
-    <script src="index.js">
+    <script src="index2.js">
     // script는 head나 body나 아무곳에 들어가도 똑같음. 
     // 보통 HTML코드들이 body에 들어가기때문에 script는 head에 쓰는게 좋음. 
     // 근데 head부분이 너무 커지니까 script 파일을 따로 만들 수 있음
 
     // 위에 link는 script파일처럼 style도 파일을 따로 만들 수 있음
+    </script>
+    <script src="index1.js">
+    // index2.js 를 먼저 실행하는 이유 
+    // crrateTable function이 index1에 있고 createTr function이 index2에 있는데 createTable에서 createTr을 호출하기 때문에 createTr이 먼저 실행되어야 한다.
+    // createTr은 index2에 있으니까 index2를 먼저 실행시켜서 createTr을 실행시켜주고 , index1을 실행시켜서 index1에 있는 createTable이 createTr을 호출할 수 있게 한다.
     </script>                                      
 </head>
 <body>
-
+    <div id="show">
+    </div>
+    <div id="fruit">
+    </div>
+    <div id="multi">
+    </div>
+    <script src="index4.js"></script>
 </body>
 </html>

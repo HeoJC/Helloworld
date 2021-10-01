@@ -22,6 +22,20 @@ console.log("이름 : " + newObj.name + " 나이 : " + newObj.age + //
             " 점수 : " + newObj.score + " 합격 : " + newObj.pass) ;
 
 // TR 태그 생성 연습
-function createTr() {
+function createTr(person) {
+    let tag = "<tr>" ;
+    for (let field in person) {                       // 객체 순환. 필드 인덱스 만큼 반복
+        tag += "<td>" + person[field] + "</td>" ;
+    }
+    if (person.score >= 60) {
+        tag += "<td class='pass'> pass </td>" ;
+    } else {
+        tag += "<td class='fail'> fail </td>" ;
+    }
+    tag += "</tr>" ;
+    if(person.score >= 60) {
 
+    }
+    return tag ;
 }
+
