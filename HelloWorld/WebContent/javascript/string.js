@@ -5,7 +5,6 @@
 function checkGender(birthInfo) {
     // 2000년 01.01 이전 출생자 주민번호 뒷자리 (1:남자 , 2:여자)
     // 2000년 01.01 이후 출생자 주민번호 뒷자리 (3:남자 , 4:여자)
-    let year = parseInt(birthInfo.slice(0,2)) ;
     let genNum = birthInfo.slice(7,8) ;
 
     if ((genNum ==1)||(genNum==2)){
