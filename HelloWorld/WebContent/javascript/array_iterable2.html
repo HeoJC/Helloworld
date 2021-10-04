@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/array_iterable2.html</title>
+</head>
+<body>
+    <script>
+        const members = [
+            {
+                name : "최선영" , 
+                score : 80
+            } , {
+                name : "윤희성" ,
+                score : 85
+            } , {
+                name : "김지인" ,
+                score : 89
+            } , {
+                name : "홍길동" ,
+                score : 50
+            }
+        ] ;
+
+        // mapping , filter , foreach
+        // mapping : 60점 넘으면 pass , 아니면 fail
+        // filter : pass 인것만 
+        // foreach : name , score , pass 이름 , 점수, 합격 -> 표 형식으로 표현
+
+        document.write("<table border='1'>") ;
+        document.write("<tr><th>이름</th><th>점수</th><th>패스</th></tr>") ;
+        const mapping = members.map(function (obj , idx , ary) {
+            let pass = "" ;
+            if (obj.score > 60) {
+                pass = "pass" ;
+            } else {
+                pass = "fail" ; 
+            }
+            const member = {name : obj.name , score : obj.score , pass : pass} ;
+            return member ;
+        }) ;
+        const filtering = mapping.filter(function (obj , idx , ary) {
+            return obj.pass == "pass" ;
+        }) ;
+        const foreach = filtering.forEach(function (obj , idx , ary) {
+            document.write("<tr>") ;
+                document.write("<td>" + obj.name + "</td>" + "<td>" + obj.score + "</td>" + "<td>" + obj.pass + "</td>") ;
+            document.write("</tr>") ;
+        }) ;
+        document.write("</table>") ;
+
+        console.log(mapping) ;
+        console.log(filtering) ;
+        
+    </script>
+</body>
+</html>

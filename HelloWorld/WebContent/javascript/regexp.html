@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/regexp.hmlt</title>
+</head>
+
+<body>
+    <h2>JavaScript Regular Expressions</h2>
+    <p>Search for an "e" in the next paragraph:</p>
+    <p id="p01">The best things in Hongkildong life are free!</p>
+    <p id="p02">www.daum.net</p>
+    <p id="demo"></p>
+
+<script>
+    let text = document.getElementById("p01").innerHTML;
+    const pattern = /w*/i ;  //new RegExp();   // /e/;      // 배열일때[], 오브젝트 {}, 정규표현식 방식. 
+    document.getElementById("demo").innerHTML = /e/i.test(text);  //pattern.test(text);
+</script>
+
+</body>
+</html>

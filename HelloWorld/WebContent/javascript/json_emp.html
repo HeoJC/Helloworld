@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/json_emp.html</title>
+</head>
+<body>
+    <script>
+    let rawData = `[{"id":1,"first_name":"Shirleen","last_name":"Novik","email":"snovik0@theguardian.com","gender":"Male","ip_address":"195.72.15.222"},
+    {"id":2,"first_name":"Anastassia","last_name":"Heap","email":"aheap1@reddit.com","gender":"Female","ip_address":"249.5.56.110"},
+    {"id":3,"first_name":"Standford","last_name":"Luckcuck","email":"sluckcuck2@slate.com","gender":"Female","ip_address":"119.116.101.203"},
+    {"id":4,"first_name":"Padgett","last_name":"Douse","email":"pdouse3@abc.net.au","gender":"Female","ip_address":"244.172.199.147"},
+    {"id":5,"first_name":"Dulce","last_name":"Cranham","email":"dcranham4@360.cn","gender":"Agender","ip_address":"155.43.212.37"},
+    {"id":6,"first_name":"Charmion","last_name":"Gresham","email":"cgresham5@deviantart.com","gender":"Bigender","ip_address":"9.244.68.30"},
+    {"id":7,"first_name":"Robbert","last_name":"Paroni","email":"rparoni6@dropbox.com","gender":"Female","ip_address":"203.241.155.141"},
+    {"id":8,"first_name":"Katy","last_name":"Reubbens","email":"kreubbens7@1688.com","gender":"Agender","ip_address":"23.199.152.58"},
+    {"id":9,"first_name":"Gradey","last_name":"Larcher","email":"glarcher8@youtu.be","gender":"Bigender","ip_address":"97.29.249.9"},
+    {"id":10,"first_name":"Marv","last_name":"Ireland","email":"mireland9@gmpg.org","gender":"Polygender","ip_address":"247.115.159.42"},
+    {"id":11,"first_name":"Wallis","last_name":"Thurston","email":"wthurstona@simplemachines.org","gender":"Polygender","ip_address":"155.135.106.240"},
+    {"id":12,"first_name":"Alexandrina","last_name":"Piaggia","email":"apiaggiab@google.fr","gender":"Polygender","ip_address":"141.60.16.215"},
+    {"id":13,"first_name":"Michaella","last_name":"Aupol","email":"maupolc@home.pl","gender":"Non-binary","ip_address":"84.203.107.107"},
+    {"id":14,"first_name":"Sutton","last_name":"Keddie","email":"skeddied@theguardian.com","gender":"Male","ip_address":"235.173.158.217"},
+    {"id":15,"first_name":"Marcel","last_name":"Glas","email":"mglase@cyberchimps.com","gender":"Agender","ip_address":"186.42.87.156"}]` ;
+
+    let data = JSON.parse(rawData) ;
+
+    console.log(data[0].id) ;
+    console.log(data[0].first_name) ;
+    console.log(data[0].last_name) ;
+    console.log(data[0].email) ;
+    console.log(data[0].gender) ;
+    console.log(data[0].ip_address) ;
+    console.log(data.field) ;
+
+    function clickFnc(e) {
+        let btn = e.target ;
+        btn.parentNode.parentNode.remove() ;
+    }
+
+    document.write("<table border=1>") ;
+    document.write("<thead><tr><th colspan='7'>list</th></th>") ;  
+    document.write("<tr><td>ID</td><td>first name</td><td>last name</td><td>email</td><td>gender</td><td>ip address</td><td>button</td></tr>") ;
+    document.write("<tr></tr>") ;
+    for (let field of data) {
+        document.write("<tr id='button'></tr>") ;
+        for (let d in field) {
+        document.write("<td>" + field[d] + "</td>") ;
+        }
+        document.write("<td><button onclick='clickFnc(event)'>삭제</button></td>") ;
+    }
+
+    </script>
+</body>
+</html>

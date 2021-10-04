@@ -16,7 +16,7 @@ table>thead>tr:nth-child(1) {
     color: yellow;
 }
 table>tbody>tr:nth-child(2n+1) {
-    background-color: rgb(228, 227, 227);
+    background-color: rgb(31, 15, 253);
 }
 td.pass {
     color: blue;

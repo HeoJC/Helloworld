@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/array_sort.html</title>
+</head>
+<body>
+    <script>
+        const numbers = [30 , 25 , 4 , 100 , 10] ;
+        numbers.sort(function(a , b) {
+            return b - a ;                                           // 음수가 나오는지 양수가 나오는지에 따라 앞뒤 순서를 바꿈
+        }) ;                                                         // 여기서 a , b 가 배열의 첫번째, 두번째를 뜻하는게 아님
+        console.log(numbers) ;                                       // a-b 는 오름차순 b-a 는 내림차순 / abcd... 는 오름차순 dcba는 내림차순이니까 그렇게 생각하면 편함
+
+        const member = [{
+            name : "Hong" ,
+            age : 20
+        } , {
+            name : "Park" ,
+            age : 22
+        } , {
+            name : "Choi" ,
+            age : 25
+        }] ;
+        member.sort(function(a , b) {
+            return a.age - b.age ;                                   // 음수, 양수에 따라 정렬
+        }) ;
+
+        console.log(member) ;
+
+        const nums = [30 , 25 , 4 , 100 , 10] ;                      // 첫번째, 두번째 숫자 위치를 바꾸는 function 만들어보는 실습
+        let temp = -Infinity ;
+        for (let i = 0 ; i < nums.length -1 ; i++) {                 // 가장 마지막 숫자는 뒤에 바꿀 숫자가 없으니까 4번째까지만 반복하라고 lenth 뒤에 -1 해줌
+            if (nums[i] < nums[i + 1]) {
+                temp = nums[i] ;                                     // 0번재 30을 temp에 넣고 
+                nums[i] = nums[i + 1] ;                              // 0번째에는 1번째 값 25를 넣고
+                nums[i + 1] = temp ;                                 // 다시 1번째에는 temp에 있던 30을 넣음, [0] 이랑 [1] 이랑 위치가 바뀜                           
+            }
+        }
+        console.log(`nums : ${nums}`) ;                              // '' 작은 따옴표 아님. 1 왼쪽에 있는거 ``
+    </script>
+</body>
+</html>
