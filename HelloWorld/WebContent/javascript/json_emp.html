@@ -25,32 +25,28 @@
     {"id":15,"first_name":"Marcel","last_name":"Glas","email":"mglase@cyberchimps.com","gender":"Agender","ip_address":"186.42.87.156"}]` ;
 
     let data = JSON.parse(rawData) ;
-
-    console.log(data[0].id) ;
-    console.log(data[0].first_name) ;
-    console.log(data[0].last_name) ;
-    console.log(data[0].email) ;
-    console.log(data[0].gender) ;
-    console.log(data[0].ip_address) ;
-    console.log(data.field) ;
-
-    function clickFnc(e) {
-        let btn = e.target ;
-        btn.parentNode.parentNode.remove() ;
-    }
-
-    document.write("<table border=1>") ;
+    
+    function clickFnc(e) {                                           // 버튼 클릭했을 때 function 생성
+        let btn = e.target ;                                         // 이벤트의 타겟을 btn에 입력
+        btn.parentNode.parentNode.remove() ;                         // 버튼이 td 안에 들어있고 td는 tr안에 들어있기 때문에
+    }                                                                // 버튼의 부모 = td , td의 부모 tr / 한줄씩 삭제하기 위해서는 부모의 부모 객체를 삭제 해줘야함
+                                                                     // parentNode 한번만 쓰면 td , 즉 테이블의 버튼이 들어있는 칸 만 삭제함
+    document.write("<table border=1>") ;                             // 테이블 생성
     document.write("<thead><tr><th colspan='7'>list</th></th>") ;  
-    document.write("<tr><td>ID</td><td>first name</td><td>last name</td><td>email</td><td>gender</td><td>ip address</td><td>button</td></tr>") ;
+    let key = Object.keys(data[0]) ;                                 // 오브젝트에서 키값을 불러오는 코드 Object.keys.오브젝트명 
+    document.write("<tr></tr>") ;                                    // 어차피 data 오브젝트 안에서 key값은 0번이나 1번이나 2번이나 같기 때문에 0번에꺼 한번만 불러와서 key에 담음
+    for (let i = 0 ; i < key.length ; i++) {                         // key값이 6개라 6번 반복하면서 각각의 키값을 td에 넣어서 제목줄을 만듦
+        document.write("<td>" + key[i] + "</td>") ;
+    }
+    document.write("<td>button</td>") ;                              // 버튼 들어갈 칸 제목 생성
     document.write("<tr></tr>") ;
-    for (let field of data) {
-        document.write("<tr id='button'></tr>") ;
-        for (let d in field) {
-        document.write("<td>" + field[d] + "</td>") ;
-        }
+    for (let field of data) {                                        // 배열 순환으로 배열의 값(id:1 , first_name:shirleen...)을 field에 넣고
+        document.write("<tr></tr>") ;
+        for (let d in field) {                                       // 객체 순환으로 field의 값(키 명(id, first_name...)을 d에 넣어서 field[d]로 키에 해당하는 값을 출력
+        document.write("<td>" + field[d] + "</td>") ;                // field에서 첫번째 key불러오고, key에 해당하는 값 field[0]에서 찾아서 td에 넣고 , field에서 두번째 key불러오고, key에 해당하는 값 field[0]에서 찾아서 td에 넣고, ...
+        }                                                            // d가 총 키값 만큼 6번 반복하고 밑에서 버튼 생성하고 다시 첫번째 for로가서 줄바꾸고 다시 내려와서 field[1]에 해당하는 값들로 td채우기 반복
         document.write("<td><button onclick='clickFnc(event)'>삭제</button></td>") ;
     }
-
     </script>
 </body>
 </html>
