@@ -43,8 +43,8 @@
     
     <script>
             let form = document.createElement("form") ;
-            form.action = "post.jsp" ;
-            form.name = "frm" ;
+            form.setAttribute("action" , "post.jsp") ;
+            form.setAttribute("name" , "frm") ;
 
             let label1 = document.createElement("label") ;
             label1.setAttribute("for" , "emp")
@@ -52,9 +52,25 @@
 
             let input1 = document.createElement("input") ;
             input1.setAttribute("type" , "text") ;
+            input1.setAttribute("id" , "emp") ;
+
+            let label2 = document.createElement("label") ;
+            label2.setAttribute("for" , "name") ;
+            label2.textContent = "이름" ;
+
+            let input2 = document.createElement("input") ;
+            input2.setAttribute("type" , "text") ;
+            input2.setAttribute("id" , "name") ;
+
+            let input3 = document.createElement("input") ;
+            input3.setAttribute("type" , "submit") ;
+            input3.value = "전송" ;
 
             form.appendChild(label1) ;
             form.appendChild(input1) ;
+            form.appendChild(label2) ;
+            form.appendChild(input2) ;
+            form.appendChild(input3) ;
 
             document.body.appendChild(form) ;
 

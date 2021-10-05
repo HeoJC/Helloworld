@@ -25,9 +25,9 @@
 
         // function / arrow function 에서의 this 차이
 
-        let btn = document.getElementById("btn") ;
+        let btn = document.getElementById("btn") ;                   // 같은 btn에 그냥 function , arrow function 둘다 적용 해봐야되서 주석처리했음
         // btn.onclick = function() {
-        //     console.log(this) ;                                   // 여기서 this 는 btn = getElementById("btn")
+        //     console.log(this) ;                                   // 여기서 this 는 btn = getElementById("btn") 그래서 this.추가메소드 이렇게 쓰면 됨
         // }
 
         btn.onclick = (event) => {
