@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom/dom.html</title>
+</head>
+<body>
+    <h1>다음 사이트 링크</h1>
+    <a href="www.daum.net">DAUM</a>
+
+    <script>
+        let h1Tag = document.getElementsByTagName("h1") ;            
+        console.log(h1Tag[0].childNodes[0]) ;                        // [0]은 h1태그중에서 첫번째것을 의미함
+
+        let bodyTag = document.getElementsByTagName("body") ;
+        console.log(bodyTag[0].childNodes[3].childNodes[0].nodeValue = "다음") ;                      
+        // 공란도 자식node로 인식 (body태그의 0번째 자식 찍어보면 text로 나옴)
+
+        let aTag = document.querySelector("a[href]") ;
+        // querySelectorAll 하면 해당하는거 전체 선택이라서 인덱스 번호 []를 붙여줘서 지정해야 하지만 querySelector는 가장 첫번째거 지정이라 인덱스 필요없음
+        console.log(aTag.parentNode.childNodes[0].nodeValue = "Hello") ;
+        // aTag의 부모 노드의 첫번째 자식노드의 노드값을 입력
+        aTag.href = "https://www.naver.com" ;
+        // aTag로 a의 속성값을 바꿈
+
+        console.log(this) ;
+    </script>
+</body>
+</html>

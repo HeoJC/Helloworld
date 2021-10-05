@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/function.html</title>
+</head>
+<body>
+    <button id="btn">click</button>
+    <script>
+        function hello() {
+            return "nice" ;
+        }
+        hello() ; // call
+
+        // arrow function
+        let nice = (name) => {
+            return "nice to see " + name ;
+        }
+        console.log(nice("홍길동")) ;
+
+        let good = nice ;
+        console.log(good("김민수")) ;
+
+        // function / arrow function 에서의 this 차이
+
+        let btn = document.getElementById("btn") ;
+        // btn.onclick = function() {
+        //     console.log(this) ;                                   // 여기서 this 는 btn = getElementById("btn")
+        // }
+
+        btn.onclick = (event) => {
+            console.log(event.target.style.backgroundColor = "greenyellow") ;
+                                                                     // arrow function 에서는 this 넣으면 window 가 나옴
+        }                                                            // event 를 변수로 받고 event.target 해야 위에 function이랑 같게 나옴 (style없이)
+
+        btn.addEventListener("mouseover" , function () {             // 위에처럼 event를 줄수도 있고 addEventListener로 event를 줄 수 있음
+            event.target.style.backgroundColor = "skyblue" ;
+        })
+
+        btn.addEventListener("mouseout" , (event) => {
+            event.target.style.backgroundColor = "orange" ;
+        })
+
+
+    </script>
+</body>
+</html>

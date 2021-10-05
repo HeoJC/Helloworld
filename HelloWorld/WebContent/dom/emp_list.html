@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom/emp_list.html</title>
+    
+    <!-- 교수님이 준 소스 -->
+    <style>
+        div#show {
+            display: inline-block ;
+            width: 60% ;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        div#aside {
+            width: 30%;
+            border: 2px dotted firebrick;
+            padding: 5px;
+            position: relative;
+        }
+
+        #aside label {
+            display: inline-block;
+            width: 100px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="show">
+
+    </div>
+
+    <!-- 교수님이 준 소스 -->
+    <div id="aside">
+        <div class="id"><label for="empId">ID</label><input type="text" id="empId"></div>
+        <div class="fname"><label for="empId">FName</label><input type="text" id="firstName"></div>
+        <div class="lname"><label for="empId">LName</label><input type="text" id="lastName"></div>
+        <div class="email"><label for="empId">Email</label><input type="text" id="email"></div>
+        <div class="gender"><label for="empId">Gender</label><input type="text" id="gender"></div>
+        <div class="address"><label for="empId">IP</label><input type="text" id="address"></div>
+        <div class="btn"> <button id="btn" style="width: 90px;">변경</button><button id="btn2" style="width: 90px;">삭제</button></div>
+    </div>
+        
+
+
+    <script>
+
+        // 변경 버튼 이벤트 설정
+        document.getElementById("btn").onclick = function () {
+            let empId = document.getElementById("empId").value ;     // 여기서 값은 mouseover 이벤트로 마우스를 올리면 자동으로 입력됨
+            let fname = document.getElementById("firstName").value ;
+            let lname = document.getElementById("lastName").value ;
+            let email = document.getElementById("email").value ;
+            let gender = document.getElementById("gender").value ;
+            let address = document.getElementById("address").value ;
+
+            let findTr = document.getElementById(empId) ;            // ID번호를 받아서 해당 번호를 ID로 가지는 TR찾기
+
+            findTr.childNodes[1].firstChild.nodeValue = fname ;      // id번호로 찾은 tr의 자식노드 (td) 중에 각각 2~6번째 자식노드를 입력한 값으로 변경
+            findTr.childNodes[2].firstChild.nodeValue = lname ;
+            findTr.childNodes[3].firstChild.nodeValue = email ;
+            findTr.childNodes[4].firstChild.nodeValue = gender ;
+            findTr.childNodes[5].firstChild.nodeValue = address ;
+        } ;
+
+        // 삭제 버튼 이벤트 설정
+        document.getElementById("btn2").onclick = function () {
+            let empId = document.getElementById("empId").value ;
+
+            let findTr = document.getElementById(empId) ;
+
+            findTr.remove() ;                                        // tr을 찾았는데 tr을 삭제할거니까 childnode찾을필요 없이 바로 remove
+        }
+
+        // 데이터
+        let rawData = `[{"id":1,"first_name":"Shirleen","last_name":"Novik","email":"snovik0@theguardian.com","gender":"Male","ip_address":"195.72.15.222"},
+            {"id":2,"first_name":"Anastassia","last_name":"Heap","email":"aheap1@reddit.com","gender":"Female","ip_address":"249.5.56.110"},
+            {"id":3,"first_name":"Standford","last_name":"Luckcuck","email":"sluckcuck2@slate.com","gender":"Female","ip_address":"119.116.101.203"},
+            {"id":4,"first_name":"Padgett","last_name":"Douse","email":"pdouse3@abc.net.au","gender":"Female","ip_address":"244.172.199.147"},
+            {"id":5,"first_name":"Dulce","last_name":"Cranham","email":"dcranham4@360.cn","gender":"Agender","ip_address":"155.43.212.37"}]` ;
+        let data = JSON.parse(rawData) ;                             // 웹에서의 데이터를 받아오는 명령어
+
+        // 표 function
+        function inputData () {
+
+        // div찾기 , 테이블 만들기 , 테이블 설정
+        divTag = document.getElementById("show") ;
+        tableTag = document.createElement("table") ;
+        tableTag.setAttribute("border" , "1") ;
+        trTag = document.createElement("tr") ;
+
+        // 필드명 줄
+        for (let field in data[0]) {                                 // data의 0번째 데이터의 필드를 받아옴. 어차피 필드명은 다 똑같으니까
+            tdTag = document.createElement("td") ;                   // td 생성
+            input = document.createTextNode(field) ;                 // 필드명을 input에 저장
+            tdTag.appendChild(input) ;                               // input을 td에 넣기
+            trTag.appendChild(tdTag) ;                               // td를 tr에 넣기
+            tableTag.appendChild(trTag) ;                            // tr을 table에 넣기
+            divTag.appendChild(tableTag) ;                           // table을 div에 넣기
+        }
+
+        // 데이터 줄
+        for (let field of data){
+            trTag = document.createElement("tr") ;                   // 제목줄에서 한줄 내려가야 하니까 tr 생성
+            trTag.setAttribute("id" , field.id) ;                    // 필드 중 id를 각 tr의 아이디로 함 (변경 버튼에 사용하려고 만듦)
+            trTag.onmouseover = function () {                        // 마우스 올린 tr의 자식노드의 nodeValue를 각각의 변수에 저장
+                let empId = this.childNodes[0].firstChild.nodeValue ;
+                let fname = this.childNodes[1].firstChild.nodeValue ;
+                let lname = this.childNodes[2].firstChild.nodeValue ;
+                let email = this.childNodes[3].firstChild.nodeValue ;
+                let gender = this.childNodes[4].firstChild.nodeValue ;
+                let address = this.childNodes[5].firstChild.nodeValue ;
+
+                document.getElementById("empId").value = empId       // 각각의 변수에 저장된 값을 해당 id 의 div에 넣기 (aside div에)
+                document.getElementById("firstName").value = fname
+                document.getElementById("lastName").value = lname
+                document.getElementById("email").value = email
+                document.getElementById("gender").value = gender
+                document.getElementById("address").value = address
+            }
+            for (let k in field) {
+                tdTag = document.createElement("td") ;               // td 생성
+                input = document.createTextNode(field[k]) ;          // 필드명에 해당하는 필드값을 input에 넣기
+                tdTag.appendChild(input) ;                           // input을 td에 넣기
+                trTag.appendChild(tdTag) ;                           // td를 tr에 넣기
+                tableTag.appendChild(trTag) ;                        // tr을 table에 넣기
+                divTag.appendChild(tableTag) ;                       // table을 div에 넣기
+            }
+        }
+        
+        }
+
+        // function 실행 (버튼누르면 실행으로 안함)
+        inputData() ;
+
+    </script>
+</body>
+</html>

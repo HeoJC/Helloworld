@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- <table border="1">
+        <thead>
+            <tr>
+                <th>아이디</th>
+                <th>이름</th>
+                <th>성별</th>
+                <th>연락처</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>hongee</td>
+                <td>홍길동</td>
+                <td>남자</td>
+                <td>010-1234-5678</td>
+            </tr>
+            <tr>
+                <td>minsunie</td>
+                <td>김민순</td>
+                <td>여자</td>
+                <td>010-3333-5543</td>
+            </tr>
+        </tbody>
+    </table> -->
+
+    <!-- <form action="post.jsp" name="frm">
+        <label for="emp">아이디</label>
+        <input type="text" name="" id="emp">
+        <label for="name">이름</label>
+        <input type="text" name="" id="name">
+        <input type="submit" value="전송">
+    </form> -->
+    
+    <script>
+            let form = document.createElement("form") ;
+            form.action = "post.jsp" ;
+            form.name = "frm" ;
+
+            let label1 = document.createElement("label") ;
+            label1.setAttribute("for" , "emp")
+            label1.textContent = "아이디" ;
+
+            let input1 = document.createElement("input") ;
+            input1.setAttribute("type" , "text") ;
+
+            form.appendChild(label1) ;
+            form.appendChild(input1) ;
+
+            document.body.appendChild(form) ;
+
+            
+
+        
+    </script>
+</body>
+</html>
