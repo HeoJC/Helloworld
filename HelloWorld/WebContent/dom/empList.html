@@ -10,6 +10,14 @@
 </style>
 </head>
 <body>
+	<!-- 
+		div id="add"로 input 태그를 만들어서 값을 받음 
+		emp.js 안에 있는 showEmpList로 화면에 표가 구현되어 있음
+		버튼에 function을 만들어서 해당 id에 해당하는 값을 각각의 변수에 담아주고, 이걸 파라미터에 형태에 맞게 담아줌
+		XMLHttpRequest 객체를 이용해서 서블릿에 post 방식으로 요청하면서 파라미터를 보냄
+		응답으로 온 데이터를 JSON형태로 parse하고 다시 data에 넣음
+		이 data + 이미 구현된 화면 밑에 표를 생성하는 function으로 추가 화면 구현
+	-->
 	<h3>사원등록</h3>
 	<div id="add">
 		<div class="field">사원번호 : <input type="text" id="empId"></div>
@@ -42,12 +50,20 @@
 					td.appendChild(document.createTextNode(data[field])) ;
 					tr.appendChild(td) ;
 				}
+				td2 = document.createElement("td") ;
+				input = document.createElement("button") ;
+				input.setAttribute("onclick" , "click(event)") ;
+				input.textContent = "Del" ;
+				td2.appendChild(input) ;
+				tr.appendChild(td2) ;
+				
 				document.querySelector("#show>table").appendChild(tr) ;
 			}
 			xhtp.open("post" , "../AddEmpServlet") ;
 			xhtp.setRequestHeader("Content-type" , "application/x-www-form-urlencoded") ;
 			xhtp.send(param) ;
 		}
+		
 	</script>
 </body>
 </html>

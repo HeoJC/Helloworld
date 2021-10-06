@@ -33,27 +33,27 @@
         // responseText : 응답된 데이터를 string 으로 반환
 
         // 무슨 파일이든 읽어올 수 있다는 예시
-        xhtp.open("get" , "get.json") ;
-        // xhtp.open("get" , "sample.txt") ;
+        xhtp.open("get" , "get.json") ;                              // XMLHttpRequest로 xhtp를 선언하고. open을 사용해서 get.json을 get 방식으로 불러옴
+        // xhtp.open("get" , "sample.txt") ;                         // 이때 responseText로 응답텍스트를 JSON파일로 parse하여 data로 변환하고 만들어놓은 function에 보내줌
         // xhtp.open("get" , "dom.html") ;
         xhtp.send() ;
 
-        function createPage(ary) {
+        function createPage(ary) { // get.json 파일에서 get 해온 데이터를 JSON 형태 데이터로 변환했는데 배열 형태라 이 function은 배열을 받는걸로 함
             // 제목
-            let table , tr , td , txt ;
-            table = document.createElement("table") ;
-            table.setAttribute("border" , "1") ;
-            tr = document.createElement("tr") ;
-            table.appendChild(tr) ;
-            for (let field in ary[0]) { // object의 필드를 하나씩 가지고 오는게 for in
-                td = document.createElement("th") ;
+            let table , tr , td , txt ;                              // 변수 선언할 때 이렇게 한꺼번에 하면 편함
+            table = document.createElement("table") ;                // 테이블 생성
+            table.setAttribute("border" , "1") ;                     // 테이블에 속성 추가
+            tr = document.createElement("tr") ;                      // 테이블의 행 생성
+            table.appendChild(tr) ;                                  // 생성한 행 테이블에 넣어줌
+            for (let field in ary[0]) {                              // object의 필드를 하나씩 가지고 오는게 for in
+                td = document.createElement("th") ;                  // td를 생성하는데 제목줄이라서 th로 생성
                 txt = document.createTextNode(field.toUpperCase().replace("_" , " ")) ; // txt에 field를 넣으면서 대문자로 바꾸고, _를 공란으로 바꾸고
-                td.appendChild(txt) ; // <th>id</th><th>first_name</th> ... 
-                tr.appendChild(td) ;
+                td.appendChild(txt) ;                                // txt에 담은 데이터를 td에 넣음 
+                tr.appendChild(td) ;                                 // td를 tr에 넣음
             }
 
             // 데이터
-            // for + for in
+            // for + for in 으로 데이터 줄 만들기
             // for (let i = 0 ; i < ary.length ; i++) {
             //     tr = document.createElement("tr") ;
             //     table.appendChild(tr) ;
@@ -64,7 +64,7 @@
             //         tr.appendChild(td) ;
             //     }
             // }
-            // for of + for in
+            // for of + for in 으로 데이터 줄 만들기
             for (let obj of ary) { // 배열순환 . 찍어보면 ( obj = id : 1 , first_name : Sanderson ... ) 이렇게 나옴
                 tr = document.createElement("tr") ;
                 table.appendChild(tr) ;

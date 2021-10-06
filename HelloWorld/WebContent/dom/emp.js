@@ -6,46 +6,51 @@ let xhtp = new XMLHttpRequest() ;
 		}
 		xhtp.open("get" , "../empjsonServlet.json") ;
 		xhtp.send() ;
-		
-		function showEmpList(data) {
-			let table , tr , td , txt ;
-			table = document.createElement("table") ;
-            table.setAttribute("border" , "1") ;
-            tr = document.createElement("tr") ;
-            table.appendChild(tr) ;
-            
-            for (let field in data[0]) {
-            	td = document.createElement("th") ;
-            	txt = document.createTextNode(field) ;
-            	td.appendChild(txt) ;
-            	tr.appendChild(td) ;
-            }
-            td2 = document.createElement("th") ;
-            txt2 = document.createTextNode("Del") ;
-        	td2.appendChild(txt2) ;
-        	tr.appendChild(td2) ;
-            
-            for (let obj of data) {
-            	tr = document.createElement("tr") ;
-            	table.appendChild(tr) ;
-            	for (let field in data[0]) {
-            		td = document.createElement("td") ;
-            		txt = document.createTextNode(obj[field]) ;
-            		td.appendChild(txt) ;
-                	tr.appendChild(td) ;
-            	}
-            		td2 = document.createElement("td") ;
-            		input = document.createElement("button") ;
-            		input.setAttribute("onclick" , "click(event)") ;
-            		input.textContent = "Del" ;
-            		td2.appendChild(input) ;
-                	tr.appendChild(td2) ;
-            }
-            
-            function click(e) {
-            	let btn = e.target ;
-            	btn.parentNode.parentNode.remove() ;
-            }
-            
-            document.getElementById("show").appendChild(table) ;
+
+// 데이터를 서블릿으로 처리하는거 실습. 웹에서 바로바로 적용되는걸 구현하기위해 XMLHttpRequest라는 객체를 생성
+// 그리고 이 객체를 이용해서 서블릿에게 get방식으로 요청. 오버라이딩 한 do get , do post 를 실행해서 처리, response를 리턴해줌
+// 응답으로 온 데이터를 JSON방식 데이터로 parse해서 data에 저장하고 이걸 showEmpList에 넘겨줌
+// 그럼 아래 showEmpList function에서 화면구현을 함
+
+function showEmpList(data) {
+	let table , tr , td , txt ;
+	table = document.createElement("table") ;
+	table.setAttribute("border" , "1") ;
+	tr = document.createElement("tr") ;
+	table.appendChild(tr) ;
+	
+	for (let field in data[0]) {
+		td = document.createElement("th") ;
+		txt = document.createTextNode(field) ;
+		td.appendChild(txt) ;
+		tr.appendChild(td) ;
+	}
+	td2 = document.createElement("th") ;
+	txt2 = document.createTextNode("Del") ;
+	td2.appendChild(txt2) ;
+	tr.appendChild(td2) ;
+	
+	for (let obj of data) {
+		tr = document.createElement("tr") ;
+		table.appendChild(tr) ;
+		for (let field in data[0]) {
+			td = document.createElement("td") ;
+			txt = document.createTextNode(obj[field]) ;
+			td.appendChild(txt) ;
+			tr.appendChild(td) ;
 		}
+			td2 = document.createElement("td") ;
+			input = document.createElement("button") ;
+			input.setAttribute("onclick" , "click(event)") ;
+			input.textContent = "Del" ;
+			td2.appendChild(input) ;
+			tr.appendChild(td2) ;
+	}
+	
+	function click(e) {
+		let btn = e.target ;
+		btn.parentNode.parentNode.remove() ;
+	}
+	
+	document.getElementById("show").appendChild(table) ;
+}
