@@ -8,6 +8,14 @@
 </head>
 <body>
 
+    <!-- <form action="post.jsp" name="frm">
+        <label for="emp">아이디</label>
+        <input type="text" name="" id="emp">
+        <label for="name">이름</label>
+        <input type="text" name="" id="name">
+        <input type="submit" value="전송">
+    </form> -->
+
     <!-- <table border="1">
         <thead>
             <tr>
@@ -33,15 +41,24 @@
         </tbody>
     </table> -->
 
-    <!-- <form action="post.jsp" name="frm">
-        <label for="emp">아이디</label>
-        <input type="text" name="" id="emp">
-        <label for="name">이름</label>
-        <input type="text" name="" id="name">
-        <input type="submit" value="전송">
-    </form> -->
-    
     <script>
+            let table = document.createElement("table") ;
+            table.setAttribute("border" , "1") ;
+
+            let thead = document.createElement("thead") ;
+            let th1 = document.createElement("th") ;
+            let th2 = document.createElement("th") ;
+            let th3 = document.createElement("th") ;
+            let th4 = document.createElement("th") ;
+            th1.textContent = "아이디" ;
+            th2.textContent = "이름" ;
+            th3.textContent = "성별" ;
+            th4.textContent = "연락처" ;
+            thead.appendChild(th1) ;
+            thead.appendChild(th2) ;
+            thead.appendChild(th3) ;
+            thead.appendChild(th4) ;
+
             let form = document.createElement("form") ;
             form.setAttribute("action" , "post.jsp") ;
             form.setAttribute("name" , "frm") ;
@@ -72,11 +89,7 @@
             form.appendChild(input2) ;
             form.appendChild(input3) ;
 
-            document.body.appendChild(form) ;
-
-            
-
-        
+            document.body.appendChild(form) ;        
     </script>
 </body>
 </html>

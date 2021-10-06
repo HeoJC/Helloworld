@@ -1,8 +1,37 @@
 package co.yedam.common;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmpDAO extends DAO {
+	
+	public List<Employee> getEmpList() {
+		connect() ;
+		List<Employee> list = new ArrayList<>() ;
+		
+		String sql = "select * from empl_demo" ;
+		try {
+			stmt = conn.createStatement() ;
+			rs = stmt.executeQuery(sql) ;
+			while(rs.next()) {
+				Employee emp = new Employee() ;
+				emp.setEmployeeId(rs.getInt("employee_id")) ;
+				emp.setLastName(rs.getString("last_name")) ;
+				emp.setEmail(rs.getString("email")) ;
+				emp.setHireDate(rs.getString("hire_date")) ;
+				emp.setJobId(rs.getString("job_id")) ;
+				
+				list.add(emp) ;
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect() ;
+		}
+		return list ;
+	}
 	
 	public void deleteEmp(int empId) {
 		connect() ; 									// conn = dbconnection.Connection

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>dom/empList.html</title>
+<style>
+	div#add {
+		border: dotted skyblue;
+	}
+</style>
+</head>
+<body>
+	<h3>사원등록</h3>
+	<div id="add">
+		<div class="field">사원번호 : <input type="text" id="empId"></div>
+		<div class="field">이름 : <input type="text" id="name"></div>
+		<div class="field">이메일 : <input type="text" id="email"></div>
+		<div class="field">입사일자 : <input type="date" id="hire"></div>
+		<div class="field">직무번호 : <input type="text" id="job" value="IT_PROG"></div>
+		<button id="addBtn">등록</button>
+	</div>
+	<div id="show">
+	</div>
+	<script src="emp.js"></script>
+	<script>
+		document.getElementById('addBtn').onclick = function () {
+			let eId = document.getElementById("empId").value ;
+			let name = document.getElementById("name").value ;
+			let email = document.getElementById("email").value ;
+			let hire = document.getElementById("hire").value ;
+			let job = document.getElementById("job").value ;
+	
+			let param = "id=" + eId + "&name=" + name + "&email=" + email + "&hire=" + hire + "&job=" + job ;
+			
+			let xhtp = new XMLHttpRequest() ;
+			xhtp.onload = function () {
+				let data = JSON.parse(xhtp.responseText) ;
+				// {id:? , name:? , ...}
+				let tr = document.createElement("tr") ;
+				for (let field in data) {
+					let td = document.createElement("td") ;
+					td.appendChild(document.createTextNode(data[field])) ;
+					tr.appendChild(td) ;
+				}
+				document.querySelector("#show>table").appendChild(tr) ;
+			}
+			xhtp.open("post" , "../AddEmpServlet") ;
+			xhtp.setRequestHeader("Content-type" , "application/x-www-form-urlencoded") ;
+			xhtp.send(param) ;
+		}
+	</script>
+</body>
+</html>

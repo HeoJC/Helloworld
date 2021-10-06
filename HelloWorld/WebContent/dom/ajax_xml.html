@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom/ajax_xml.html</title>
+</head>
+<body>
+    <h1>Ajax XML 파일실습</h1>
+    <div id="show"></div>
+
+    <script>
+        let xhtp = new XMLHttpRequest() ;
+        xhtp.onreadystatechange = function () {
+            if(this.readyState == 4 && this.status == 200) {
+                let doc = this.responseXML ;                         // responseXML : XML데이터로 불러옴
+                let data = doc.getElementsByTagName("record") ;
+                // console.log(data[0].childNodes[0].firstChild.nodeValue) ; 
+                // data[0] = <record>...</record> (데이터의 첫번째 자식 record를 가지고옴)
+                // data[0].childNodes[0] = <id>1</id> (첫번째 record의 첫번째 자식 node를 가지고옴)
+                // data[0].childNodes[0].firstChild = "1" (첫번째 record의 첫번째 자식 node의 첫번째 자식을 가지고옴)
+                // data[0].childNodes[0].firstChild.nodeValue = 1 (첫번째 record의 첫번째 자식 node의 첫번째 자식의 node값을 가지고옴)
+                createPage(data) ;
+            }
+        }
+        xhtp.open("get" , "dataset.xml") ;
+        xhtp.send() ;
+
+        function createPage(data) {
+            let titles = ["ID" , "이름" , "성씨" , "이메일" , "성별" , "IP"] ;
+            let table , tr , td , txt ;
+            table = document.createElement("table") ;
+            table.setAttribute("border" , "1") ; 
+            
+            // 타이틀
+            tr = document.createElement("tr") ;
+            for (let title of titles) {
+                td = document.createElement("th") ;
+                txt = document.createTextNode(title) ;
+                td.appendChild(txt) ;
+                tr.appendChild(td) ;
+            }
+            table.appendChild(tr) ;
+
+            for (let i = 0 ; i < data.length ; i++){
+                tr = document.createElement("tr") ;                  // 데이터 갯수 만큼 tr 생성 반복
+                for (let j = 0 ; j < 6 ; j++ ) {                     // title이 6개니까 0~5까지 6번 반복
+                    td = document.createElement("td") ;              // td만들어주고
+                    let id = data[i].childNodes[j].firstChild.nodeValue ; // 0번째 데이터의 0번째부터 5번째까지 자식의 nodeValue를 id에 저장
+                    txt = document.createTextNode(id) ;              // id에 저장된 값 txt에 넣음
+                    td.appendChild(txt) ;                            // txt를 td에 넣음
+                    tr.appendChild(td) ;                             // td를 tr에 넣음
+                }
+                table.appendChild(tr) ;                              // tr 한줄씩 만들어질 때 마다 table에 넣음
+
+                // let fn = data[i].childNodes[1].firstChild.nodeValue ; // 위에 반복문으로 돌려서 필요 없음 / 그리고 이렇게 끝까지 하면 너무 길어짐 
+                // let ln = data[i].childNodes[2].firstChild.nodeValue ;
+                // let em = data[i].childNodes[3].firstChild.nodeValue ;
+                // let gen = data[i].childNodes[4].firstChild.nodeValue ;
+                // let ip = data[i].childNodes[5].firstChild.nodeValue ;
+                // console.log(id , fn , ln , em , gen , ip) ;
+            }
+            document.getElementById("show").appendChild(table) ;     // table을 div#show에 넣음
+        }
+    </script>
+</body>
+</html>

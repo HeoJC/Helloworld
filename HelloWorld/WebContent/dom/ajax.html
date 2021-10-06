@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom/ajax.html</title>
+</head>
+<body>
+    <!-- ajax 사용이유 : ajax를 쓰면 웹서버로 데이터를 보낼 수 있고, 웹 서버로 부터 데이터를 읽을 수 있고 새로고침 하지않고 웹페이지에 변경을 반영할 수 있다. -->
+    <h2>Ajax 처리</h2>
+    <div id="show"></div>
+    <script>
+        // 서버로 get.json
+        let xhtp = new XMLHttpRequest() ;
+        xhtp.onreadystatechange = function() {                       // 상태가 변할 때(onreadystatechange) 실행 될 function 설정
+            console.log(xhtp.readyState + " " + xhtp.status) ;       // 숫자로 인식되어서 더해져서 중간에 공란 넣었음
+            if (xhtp.readyState == 4 && xhtp.status == 200) {        // 요청을 끝내고, 오류가 없을때 4 랑 200 이 뜨니까 아무 문제 없을 때 밑에를 실행하라는 조건
+                // console.log(xhtp.responseText) ;
+                let data = JSON.parse(xhtp.responseText) ;           // JSON파일 말고 다른거 불러올 때 써놓으면 오류나서 주석처리함
+                // console.log(data) ;
+                createPage(data) ;
+            }
+        }
+        // readyState : 0: 요청이 시작되지 않음
+        //              1: 서버 연결
+        //              2: 요청 수신
+        //              3: 요청 실행중
+        //              4: 요청 끝 응답 대기
+        // status : 200:  OK
+        //          403: 금지됨
+        //          404: 찾지 못함
+        // responseText : 응답된 데이터를 string 으로 반환
+
+        // 무슨 파일이든 읽어올 수 있다는 예시
+        xhtp.open("get" , "get.json") ;
+        // xhtp.open("get" , "sample.txt") ;
+        // xhtp.open("get" , "dom.html") ;
+        xhtp.send() ;
+
+        function createPage(ary) {
+            // 제목
+            let table , tr , td , txt ;
+            table = document.createElement("table") ;
+            table.setAttribute("border" , "1") ;
+            tr = document.createElement("tr") ;
+            table.appendChild(tr) ;
+            for (let field in ary[0]) { // object의 필드를 하나씩 가지고 오는게 for in
+                td = document.createElement("th") ;
+                txt = document.createTextNode(field.toUpperCase().replace("_" , " ")) ; // txt에 field를 넣으면서 대문자로 바꾸고, _를 공란으로 바꾸고
+                td.appendChild(txt) ; // <th>id</th><th>first_name</th> ... 
+                tr.appendChild(td) ;
+            }
+
+            // 데이터
+            // for + for in
+            // for (let i = 0 ; i < ary.length ; i++) {
+            //     tr = document.createElement("tr") ;
+            //     table.appendChild(tr) ;
+            //     for (let field in ary[0]) { 
+            //         td = document.createElement("td") ;
+            //         txt = document.createTextNode(ary[i][field]) ; // 0번째부터 각각의 field명에 해당하는 ary의 필드값을 불러서 txt에 저장
+            //         td.appendChild(txt) ; 
+            //         tr.appendChild(td) ;
+            //     }
+            // }
+            // for of + for in
+            for (let obj of ary) { // 배열순환 . 찍어보면 ( obj = id : 1 , first_name : Sanderson ... ) 이렇게 나옴
+                tr = document.createElement("tr") ;
+                table.appendChild(tr) ;
+                for (let field in ary[0]) { 
+                    td = document.createElement("td") ;
+                    txt = document.createTextNode(obj[field]) ; // ( obj = id : 1 , first_name : Sanderson ... )에서 필드명에 해당하는 obj의 필드값을 불러서 txt에 저장
+                    td.appendChild(txt) ; 
+                    tr.appendChild(td) ;
+                }
+            }
+
+            document.getElementById("show").appendChild(table) ;
+        }
+
+    </script>
+</body>
+</html>
