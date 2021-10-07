@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        div.outline {
+            border: 1px solid red;
+            width: 1200px;
+            height: 1100px;
+        }
+        header#out , section , aside , footer {
+            border: 1px solid gray;
+            padding: 20px;
+        }
+        header#out {
+            background-color: plum;
+            width: 1100px;
+            height: 200px;
+            position: relative;
+            top: 20px;
+            left: 40px;
+            right: 40px;
+        }
+        section {
+            position: relative;
+            top: 70px;
+            left: 40px;
+            width: 650px;
+        }
+        article#article1 {
+            width: 550px;
+            margin: auto 50px;
+        }
+        table {
+            width: 550px;
+            border: 2px solid white;
+            text-align: center;
+            margin: auto 50px;
+        }
+        table tr:nth-child(even) {
+            background-color: skyblue;
+        }
+        table tr:nth-child(odd) {
+            background-color: steelblue;
+        }
+        tr#title {
+            background-color: blue;
+            color: white;
+        }
+        aside {
+            clear: both;
+            position: absolute;
+            left:850px;
+            top: 280px;
+            background-color: grey;
+            width: 300px;
+            height: 300px;
+            line-height: 30px;
+        }
+        footer {
+            clear: both;
+            position: absolute;
+            top: 880px;
+            left: 40px;
+            right: 40px;
+            width: 1100px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outline">
+        <header id="out">
+            <h1>ONLINE SSAFY</h1>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="" style="color: green;">메뉴1</a>
+            <a href="" style="color: green">메뉴2</a>
+            <a href="" style="color: green">메뉴3</a>
+            <a href="" style="color: green">메뉴4</a>
+        </header>
+        <section>
+            <header><h3>기사 1</h3></header>
+            <article style="background-color: yellow;" id="article1">
+                <p>
+                    휘장은 한글 '서울'을 서울의 산, 해, 한강으로 나타내면서 전체적으로는 신명나는 사람의
+                    모습을 형상화한 것으로 인간 중심도시를 지향하는 서울을 상징합니다. 자연 - 인간 - 도시의
+                    맥락 속에서 녹색 산은 환경사랑, 청색 한강은 역사와 활력, 가운데 해는
+                    미래의 비전과 희망을 함축하고, 이 세가지 요소를 붓터치로 자연스럽게 연결하여 서울의
+                    이미지와 사람의 활력을 친근하게 느낄 수 있도록 하였습니다.
+                </p>
+                <p>
+                    녹색 산은 환경사랑, 청색 한강은 역사와 활력, 가운데 해는 미래의 비전과 희망을 함축하고,
+                    이 세가지 요소를 붓터치로 자연스럽게 연결하여 서울의 이미자와 사랑의 활력을 친근하게
+                    느낄 수 있도록 하였습니다.
+                </p>
+            </article>
+            <header id="article2"><h3>기사 2</h3></header>
+            <article>
+                <p>
+                    <table>
+                        <tr id="title">
+                            <th>번호</th><th>제목</th><th>작성자</th>
+                        </tr>
+                        <tr>
+                            <td>1</td><td>Make Insert date time customizable.</td><td>강감찬</td>
+                        </tr>
+                        <tr>
+                            <td>2</td><td>Make date time order reversible for short</td><td>장영실</td>
+                        </tr>
+                        <tr>
+                            <td>3</td><td>Add Insert Date/Time commands shortcut</td><td>안중근</td>
+                        </tr>
+                        <tr>
+                            <td>4</td><td>Fix regression: no error message when locked</td><td>김두한</td>
+                        </tr>
+                        <tr>
+                            <td>5</td><td>Make "Confirm Save All" dialog more clear:</td><td>계백</td>
+                        </tr>
+                        <tr>
+                            <td>6</td><td>Improve JSON , PHP , PYTHON , CSS , BANNC and</td><td>최무선</td>
+                        </tr>
+                    </table>
+                </p>
+            </article>
+        </section>
+        <aside>
+            <p>
+                <h2>SIDEBAR</h2>
+            </p>
+            <p>
+                모든 국민은 근로의 의무를 진다. 
+                국가는 근로의 의무의 내용과 조건을 
+                민주주의원칙에 따라법률로 정한다.
+            </p>
+        </aside>
+        <footer>
+            <p>
+                <h1>Footer</h1>
+            </p>
+            <p>
+                이 헌법시행 당시의 법령과 조약은 이 헌법에 위배되지 아니하는 한 그 효력을 지속한다.
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

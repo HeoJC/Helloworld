@@ -41,16 +41,28 @@ function showEmpList(data) {
 		}
 			td2 = document.createElement("td") ;
 			input = document.createElement("button") ;
-			input.setAttribute("onclick" , "click(event)") ;
+			input.setAttribute("onclick" , "delBtn(event)") ;
 			input.textContent = "Del" ;
 			td2.appendChild(input) ;
 			tr.appendChild(td2) ;
 	}
 	
-	function click(e) {
-		let btn = e.target ;
-		btn.parentNode.parentNode.remove() ;
-	}
-	
 	document.getElementById("show").appendChild(table) ;
 }
+
+	function delBtn(e) {
+		let id = e.target.parentNode.parentNode.firstChild.innerHTML ;
+		let tr = e.target.parentNode.parentNode ;
+		let xhtp = new XMLHttpRequest() ;
+		xhtp.onload = function() {
+			console.log(xhtp.responseText) ;
+			let result = JSON.parse(xhtp.responseText) ;
+			if (result.retCode == "success") {
+				tr.remove() ;
+			} else {
+			 	window.alert("처리중 에러발생") ;
+			}			
+		}
+		xhtp.open("get" , "../DeljsonServlet?id=" + id) ;
+		xhtp.send() ;
+	}

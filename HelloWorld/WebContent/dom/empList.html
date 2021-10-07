@@ -6,6 +6,7 @@
 <style>
 	div#add {
 		border: dotted skyblue;
+		
 	}
 </style>
 </head>
@@ -31,15 +32,34 @@
 	</div>
 	<script src="emp.js"></script>
 	<script>
+		
+		// 버튼 눌렀을 때 input에 들어간 value를 변수에 담고 화면에 구현된 표 밑에 새로운 행을 붙이는 function
 		document.getElementById('addBtn').onclick = function () {
+			// input으로 받은 값 변수에 넣음
 			let eId = document.getElementById("empId").value ;
 			let name = document.getElementById("name").value ;
 			let email = document.getElementById("email").value ;
 			let hire = document.getElementById("hire").value ;
 			let job = document.getElementById("job").value ;
-	
+
 			let param = "id=" + eId + "&name=" + name + "&email=" + email + "&hire=" + hire + "&job=" + job ;
 			
+			// 등록아이디가 존재하는지 여부 체크 , 아이디값을 가지고 서버에 값이 존재여부 체크 , ajax > 서블릿 > EmpDAO , 한건 조회해서 메소드 , 존재하면 true 아니면 false
+			let xhttp = new XMLHttpRequest() ;
+			xhttp.onload = function() {
+			let exists = JSON.parse(xhttp.responseText) ;
+			console.log(xhttp.responseText) ;
+			if (exists.retCode == "NG") {
+				window.alert("이미 존재하는 아이디입니다") ;
+				return ;
+				}
+			}
+			xhttp.open("get" , "../checkEmpServlet?checkId=" + eId) ; // checkId는 파라미터명 servlet에 같은 파라미터명이 들어가야함
+			xhttp.send() // 여기가 실행
+			
+			// 서블렛에 request 하고 response 온걸로 기존에 화면에 구현된 표 밑에 새로운 행 붙임
+			// request 하면 AddEmpServlet에서 insertEmp로 데이터베이스에 데이터를 넣고
+			// showEmpList로 새로 전체를 보여주는거
 			let xhtp = new XMLHttpRequest() ;
 			xhtp.onload = function () {
 				let data = JSON.parse(xhtp.responseText) ;
@@ -50,9 +70,10 @@
 					td.appendChild(document.createTextNode(data[field])) ;
 					tr.appendChild(td) ;
 				}
+				// 삭제버튼 추가
 				td2 = document.createElement("td") ;
 				input = document.createElement("button") ;
-				input.setAttribute("onclick" , "click(event)") ;
+				input.setAttribute("onclick" , "delBtn(event)") ;
 				input.textContent = "Del" ;
 				td2.appendChild(input) ;
 				tr.appendChild(td2) ;
@@ -60,10 +81,27 @@
 				document.querySelector("#show>table").appendChild(tr) ;
 			}
 			xhtp.open("post" , "../AddEmpServlet") ;
-			xhtp.setRequestHeader("Content-type" , "application/x-www-form-urlencoded") ;
-			xhtp.send(param) ;
+			xhtp.setRequestHeader("Content-type" , "application/x-www-form-urlencoded") ; // contetn-type이 application/x-www-form-urlencoded 면 key1=value1 & key2=value2 형식으로 요청
+			xhtp.send(param) ;		
 		}
+				
 		
+			function delBtn(e) {
+				let id = e.target.parentNode.parentNode.firstChild.innerHTML ;
+				let tr = e.target.parentNode.parentNode ;
+				let xhtp = new XMLHttpRequest() ;
+				xhtp.onload = function() {
+					console.log(xhtp.responseText) ;
+					let result = JSON.parse(xhtp.responseText) ;
+					if (result.retCode == "success") {
+						tr.remove() ;
+					} else {
+					 	window.alert("처리중 에러발생") ;
+					}			
+				}
+				xhtp.open("get" , "../DeljsonServlet?id=" + id) ;
+				xhtp.send() ;
+			}
 	</script>
 </body>
 </html>

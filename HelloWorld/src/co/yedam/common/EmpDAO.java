@@ -6,6 +6,43 @@ import java.util.List;
 
 public class EmpDAO extends DAO {
 	
+	// 데이터 있거나, 에러가 나면(있는지 없는지 모름) -> false / 데이터가 없는게 확실하면 -> true
+	public boolean checkId (String id) {
+		connect() ;
+		String sql = "select * from empl_demo where employee_id = ?" ;
+		try {
+			psmt = conn.prepareStatement(sql) ;
+			psmt.setString(1, id) ;
+			rs = psmt.executeQuery() ;
+			if(rs.next()) {
+				return false ;
+			} else {
+				return true ; // 에러가 난건 데이터가 있는지 없는지 확실하지 않은데 없는건 확실히 없는거니까 데이터가 있거나 에러난건 false로 처리하고 없으면 true로 처리
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect() ;
+		}
+		return false ;
+	}
+	
+	public int delEmpList (String empId) {
+		connect() ; 									
+		String sql = "delete from empl_demo where employee_id = " + empId ;
+		try {
+			stmt = conn.createStatement() ; 			
+			int r = stmt.executeUpdate(sql) ;
+			System.out.println(r + "건 삭제됨") ;
+			return Integer.parseInt(empId) ;
+		} catch (SQLException e) {
+			e.printStackTrace() ;
+			return -1 ;
+		} finally {
+			disconnect() ;
+		}
+	}
+	
 	public List<Employee> getEmpList() {
 		connect() ;
 		List<Employee> list = new ArrayList<>() ;
