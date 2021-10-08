@@ -29,6 +29,7 @@
 		<div class="field">입사일자 : <input type="date" id="hire"></div>
 		<div class="field">직무번호 : <input type="text" id="job" value="IT_PROG"></div>
 		<button id="addBtn">등록</button>
+		<button id="updateBtn">수정</button>
 	</div>
 	<div id="show">
 	</div>
@@ -55,6 +56,9 @@
 					return;
 				}
 
+				// 서블렛에 request 하고 response 온걸로 기존에 화면에 구현된 표 밑에 새로운 행 붙임
+				// request 하면 AddEmpServlet에서 insertEmp로 데이터베이스에 데이터를 넣고
+				// showEmpList로 새로 전체를 보여주는거
 				let xhtp = new XMLHttpRequest();
 				xhtp.onload = function () {
 					let data = JSON.parse(xhtp.responseText);
@@ -83,13 +87,7 @@
 			}
 			xhttp.open("get", "../checkEmpServlet?checkId=" + eId); // checkId는 파라미터명 servlet에 같은 파라미터명이 들어가야함
 			xhttp.send() // 여기가 실행
-
-			// 서블렛에 request 하고 response 온걸로 기존에 화면에 구현된 표 밑에 새로운 행 붙임
-			// request 하면 AddEmpServlet에서 insertEmp로 데이터베이스에 데이터를 넣고
-			// showEmpList로 새로 전체를 보여주는거
-
 		}
-
 
 		function delBtn(e) {
 			let id = e.target.parentNode.parentNode.firstChild.innerHTML;
@@ -107,6 +105,11 @@
 			xhtp.open("get", "../DeljsonServlet?id=" + id);
 			xhtp.send();
 		}
+
+		// 수정버튼 혼자 하던거
+		// document.getElementById("updateBtn").onclick = function () {
+
+		// }
 	</script>
 </body>
 
